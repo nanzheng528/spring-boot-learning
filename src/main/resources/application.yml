@@ -10,3 +10,8 @@ my:
 spring:
  profiles:
   active: dev
+ activemq:
+   broker-url: tcp://127.0.0.1:61616
+   in-memory: true
+   pool:
+     enabled: false
