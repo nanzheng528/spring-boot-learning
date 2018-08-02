@@ -28,8 +28,8 @@ public class BinaryTree {
      * description:先序遍历
      * create time: 上午 10:13 18/7/6
      *
-     * @param note
-     * @return void
+     * @param  note
+     * @return  void
      */
     public void theFirstTraversal(Note note){
 
