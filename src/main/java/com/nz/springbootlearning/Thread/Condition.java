@@ -12,14 +12,15 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class Condition {
 
-     static class Businewss{
+    static class Businewss {
         private boolean bool = true;
-        private Lock  lock = new ReentrantLock();
+        private Lock lock = new ReentrantLock();
         private java.util.concurrent.locks.Condition condition = lock.newCondition();
-        public void main(int loop){
+
+        public void main(int loop) {
             lock.lock();
             try {
-                while (bool){
+                while (bool) {
                     try {
                         condition.await();//相当于wait()方法
                     } catch (InterruptedException e) {
@@ -35,13 +36,14 @@ public class Condition {
                 lock.unlock();
             }
         }
+
         public void sub(int loop) throws InterruptedException {
             lock.lock();
             try {
-                while (!bool){
+                while (!bool) {
                     condition.await();
                 }
-                for (int i = 0; i < 100; i++){
+                for (int i = 0; i < 100; i++) {
                     System.out.println("sub thread seq of " + i + ",loop of " + loop);
                 }
                 bool = false;
@@ -51,6 +53,7 @@ public class Condition {
             }
         }
     }
+
     public static void main(String[] args) {
         Businewss businewss = new Businewss();
         new Thread(new Runnable() {
@@ -62,14 +65,14 @@ public class Condition {
         threadExecute(businewss, "main");
     }
 
-    public  static void threadExecute(Businewss businewss,String threadType){
-        for (int i = 0; i < 100; i++){
-            if ("main".equals(threadType)){
+    public static void threadExecute(Businewss businewss, String threadType) {
+        for (int i = 0; i < 100; i++) {
+            if ("main".equals(threadType)) {
                 businewss.main(i);
             } else {
                 try {
                     businewss.sub(i);
-                }    catch (InterruptedException e) {
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
