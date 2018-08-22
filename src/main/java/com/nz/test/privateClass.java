@@ -20,6 +20,5 @@ class a {
     public static void main(String[] args) {
         privateClass privateClass = new privateClass();
         String a = privateClass.a;
-
     }
 }
